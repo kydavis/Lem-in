@@ -6,7 +6,7 @@
 /*   By: kdavis <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/22 13:25:29 by kdavis            #+#    #+#             */
-/*   Updated: 2017/02/25 14:49:03 by kdavis           ###   ########.fr       */
+/*   Updated: 2017/03/15 16:42:15 by kdavis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,14 +37,20 @@ static int	read_commands(t_li_master *master, char **line)
 static int	get_ants(t_li_master *master)
 {
 	char	*line;
+	size_t	line_len;
 	int		ern;
 
 	ern = 1;
 	if ((get_next_line(0, &line)) < 1)
 		return (ERROR);
 	master->nbr_ants = ft_atoull(line);
-	if (ft_ullsize_base(master->nbr_ants, 10) != ft_strlen(line))
+	line_len = ft_strlen(line);
+	if (ft_ullsize_base(master->nbr_ants, 10) != line_len)
 		ern = ERROR;
+	if (!(ft_grow_vec(&master->map, master->map.len + line_len)))
+		ern = ERROR;
+	else
+		ft_memmove((char*)master->map.arr + 
 	ft_strdel(&line);
 	return (ern);
 }

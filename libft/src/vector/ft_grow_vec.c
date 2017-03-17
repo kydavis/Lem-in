@@ -6,12 +6,11 @@
 /*   By: kdavis <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/25 16:26:09 by kdavis            #+#    #+#             */
-/*   Updated: 2017/02/20 19:13:00 by kdavis           ###   ########.fr       */
+/*   Updated: 2017/03/15 16:43:32 by kdavis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <ft_vector.h>
-#include <ft_memory.h>
 
 /*
 ** If neccsary ft_grow_vec will double the amount of space allocated for a

@@ -6,7 +6,7 @@
 /*   By: kdavis <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/21 15:27:32 by kdavis            #+#    #+#             */
-/*   Updated: 2017/02/23 23:43:47 by kdavis           ###   ########.fr       */
+/*   Updated: 2017/03/15 14:52:16 by kdavis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ typedef struct	s_room
 typedef struct	s_li_master
 {
 	t_vec		room;
+	t_vec		map;
 	uintmax_t	nbr_ants;
 	size_t		nbr_rooms;
 }				t_li_master;

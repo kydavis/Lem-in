@@ -6,12 +6,11 @@
 /*   By: kdavis <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/25 13:30:37 by kdavis            #+#    #+#             */
-/*   Updated: 2017/01/25 14:45:09 by kdavis           ###   ########.fr       */
+/*   Updated: 2017/03/15 16:43:41 by kdavis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <ft_vector.h>
-#include <ft_memory.h>
 
 /*
 ** ft_initialize_vec takes in a vector and initializes all three portions.

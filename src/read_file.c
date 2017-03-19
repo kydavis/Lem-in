@@ -6,18 +6,11 @@
 /*   By: kdavis <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/22 13:25:29 by kdavis            #+#    #+#             */
-/*   Updated: 2017/03/18 17:05:06 by kdavis           ###   ########.fr       */
+/*   Updated: 2017/03/19 14:19:39 by kdavis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <lem_in.h>
-
-static int	make_room(t_li_master *master)
-{
-	if (!(master->room.arr))
-		ft_initialize_vec(&master->room, sizeof(t_room *), 10, 1);
-	return (1);
-}
 
 static int	get_ants(t_li_master *master)
 {
@@ -30,9 +23,12 @@ static int	get_ants(t_li_master *master)
 		return (ERROR);
 	master->nbr_ants = ft_atoull(line);
 	if (ft_ullsize_base(master->nbr_ants, 10) != line_len)
+	{
 		ern = ERROR;
-	if (!(ft_vecapp(&master->map, line, line_len)))
-		ern = ERROR;
+		g_error = 1;
+	}
+	else
+		ern = add_line(&master->map, line, line_len);
 	ft_strdel(&line);
 	return (ern);
 }

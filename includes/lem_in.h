@@ -6,7 +6,7 @@
 /*   By: kdavis <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/21 15:27:32 by kdavis            #+#    #+#             */
-/*   Updated: 2017/03/18 14:30:12 by kdavis           ###   ########.fr       */
+/*   Updated: 2017/03/19 13:44:14 by kdavis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@
 # include <libft.h>
 
 # define ERROR -1
+
+extern int	g_error;
 
 /*
 ** connection: index of the rooms that this room is connected to.
@@ -54,6 +56,7 @@ typedef struct	s_li_master
 
 int	read_file(t_li_master *master);
 int	get_rooms(t_li_master *master);
+int	add_line(t_vec *map, char *line, size_t line_len);
 
 /*
 ** cleanup functions

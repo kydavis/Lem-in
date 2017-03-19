@@ -6,11 +6,19 @@
 /*   By: kdavis <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/22 13:27:58 by kdavis            #+#    #+#             */
-/*   Updated: 2017/03/18 17:03:50 by kdavis           ###   ########.fr       */
+/*   Updated: 2017/03/19 14:19:49 by kdavis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <lem_in.h>
+
+static const char	*g_error_message[] =
+{
+	"Error 0: Error allocating memory",
+	"Error 1: Improper number of ants",
+	"Error 2: Improper Room format",
+	"Error 3: Improper Link format"
+};
 
 static void	remove_rooms(t_li_master *master)
 {
@@ -34,6 +42,6 @@ int		li_cleanup(int ern, t_li_master *master)
 	remove_rooms(master);
 	ft_memdel(&master->map.arr);
 	if (ern < 0)
-		ft_putendl_fd("ERROR", 2);
+		ft_putendl_fd(g_error_message[g_error], 2);
 	return (ern);
 }

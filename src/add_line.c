@@ -1,29 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   add_line.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kdavis <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/02/21 15:28:05 by kdavis            #+#    #+#             */
-/*   Updated: 2017/03/19 13:44:27 by kdavis           ###   ########.fr       */
+/*   Created: 2017/03/18 17:47:42 by kdavis            #+#    #+#             */
+/*   Updated: 2017/03/18 17:56:56 by kdavis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <lem_in.h>
 
-int	g_error = 0;
+/*
+** add_line appends a new line to the map vector in master.
+*/
 
-int	main(int argc, char **argv)
+int	add_line(t_vec *map, char *line, size_t line_len)
 {
-	t_li_master	master;
+	char	*new_line;
+	int		ern;
 
-	ft_bzero(&master, sizeof(master));
-	ft_initialize_vec(&master.map, sizeof(char), BUFF_SIZE, 0);
-	if (read_file(&master) == ERROR)
-		return (li_cleanup(ERROR, &master));
-	ft_putstr((char*)master.map.arr);
-/*	ft_printf("%s\n", (char*)master.map.arr);*/
-	li_cleanup(0, &master);
-	return (0);
+	ern = 1;
+	if (!(new_line = ft_strjoin(line, "\n")))
+		return (ERROR);
+	if (!(ft_vecapp(map, new_line, line_len + 1)))
+		ern = ERROR;
+	ft_strdel(&new_line);
+	return (ern);
 }

@@ -6,7 +6,7 @@
 #    By: kdavis <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/02/21 14:59:51 by kdavis            #+#    #+#              #
-#    Updated: 2017/02/23 23:04:44 by kdavis           ###   ########.fr        #
+#    Updated: 2017/03/18 17:04:24 by kdavis           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME		=lem-in
 
 MAKE		=make
 
-FILENAMES	=main.c li_cleanup.c read_file.c
+FILENAMES	=main.c li_cleanup.c read_file.c get_rooms.c
 
 SRCDIR		=src/
 IDIR		=includes/

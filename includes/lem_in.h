@@ -6,7 +6,7 @@
 /*   By: kdavis <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/21 15:27:32 by kdavis            #+#    #+#             */
-/*   Updated: 2017/03/15 14:52:16 by kdavis           ###   ########.fr       */
+/*   Updated: 2017/03/18 14:30:12 by kdavis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,10 @@
 # define ERROR -1
 
 /*
-** name: Name of the room
-** position: 1:start 0:middle -1:end
 ** connection: index of the rooms that this room is connected to.
+** name: Name of the room
+** dist: distance of room to end.
+** position: 1:start 0:middle -1:end
 ** occupied: 1: occupied 0: vacant.
 */
 
@@ -30,6 +31,7 @@ typedef struct	s_room
 {
 	t_vec		connection;
 	char		*name;
+	size_t		dist;
 	int			x;
 	int			y;
 	char		position;
@@ -37,7 +39,7 @@ typedef struct	s_room
 }				t_room;
 
 /*
-** room: array of t_rrom structures
+** room: array of t_room structures
 ** nbr_ants: The number of ants
 ** nbr_rooms: The number of rooms
 */
@@ -51,6 +53,7 @@ typedef struct	s_li_master
 }				t_li_master;
 
 int	read_file(t_li_master *master);
+int	get_rooms(t_li_master *master);
 
 /*
 ** cleanup functions

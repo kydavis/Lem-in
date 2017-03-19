@@ -6,7 +6,7 @@
 /*   By: kdavis <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/15 16:39:49 by kdavis            #+#    #+#             */
-/*   Updated: 2017/03/15 16:42:42 by kdavis           ###   ########.fr       */
+/*   Updated: 2017/03/17 14:40:31 by kdavis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,9 @@ int	ft_vecapp(t_vec *self, void *src, size_t n)
 	size_t	offset;
 
 	offset = self->len * self->size;
-	if (!(ft_grow_vec(self, n + offset)))
+	if (n % self->size || !(ft_grow_vec(self, n + offset)))
 		return (0);
 	ft_memmove(self->arr + offset, src, n);
+	self->len += (n / self->size);
 	return (1);
 }

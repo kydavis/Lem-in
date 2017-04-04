@@ -6,7 +6,7 @@
 /*   By: kdavis <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/22 13:25:29 by kdavis            #+#    #+#             */
-/*   Updated: 2017/03/19 14:19:39 by kdavis           ###   ########.fr       */
+/*   Updated: 2017/04/03 21:54:13 by kdavis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,18 +18,12 @@ static int	get_ants(t_li_master *master)
 	size_t	line_len;
 	int		ern;
 
-	ern = 1;
+	ern = ERROR;
 	if ((line_len = get_next_line(0, &line)) < 1)
 		return (ERROR);
-	master->nbr_ants = ft_atoull(line);
-	if (ft_ullsize_base(master->nbr_ants, 10) != line_len)
-	{
-		ern = ERROR;
+	if (!(validate_atouintmax(&master->nbr_ants, line)))
 		g_error = 1;
-	}
-	else
-		ern = add_line(&master->map, line, line_len);
-	ft_strdel(&line);
+	ern = add_line(&MAP, &line, line_len);
 	return (ern);
 }
 

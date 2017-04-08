@@ -6,7 +6,7 @@
 #    By: kdavis <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/02/21 14:59:51 by kdavis            #+#    #+#              #
-#    Updated: 2017/04/03 21:56:10 by kdavis           ###   ########.fr        #
+#    Updated: 2017/04/06 14:30:36 by kdavis           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,6 +18,7 @@ FILENAMES	=	main.c\
 				li_cleanup.c\
 				read_file.c\
 				get_rooms.c\
+				get_links.c\
 				add_line.c\
 				validate_numbers.c\
 #				test_mallocwrap.c\

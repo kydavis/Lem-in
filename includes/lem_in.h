@@ -6,7 +6,7 @@
 /*   By: kdavis <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/21 15:27:32 by kdavis            #+#    #+#             */
-/*   Updated: 2017/04/04 10:26:26 by kdavis           ###   ########.fr       */
+/*   Updated: 2017/04/07 18:16:41 by kdavis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,10 @@
 # include <limits.h>
 
 # define ERROR -1
+# define OK		1
 # define MAP	master->map
 # define ROOM	master->room
+# define LINK	master->room.links
 
 extern int	g_error;
 
@@ -35,7 +37,7 @@ extern int	g_error;
 
 typedef struct	s_room
 {
-	t_vec		connection;
+	t_vec		links;
 	char		*name;
 	size_t		dist;
 	int			coord[2];
@@ -44,7 +46,7 @@ typedef struct	s_room
 }				t_room;
 
 /*
-** room: array of t_room structures
+** room: array of pointers to t_room structures (t_room**)
 ** map: Final output to be printed to the screen
 ** nbr_ants: The number of ants
 */
@@ -54,21 +56,33 @@ typedef struct	s_li_master
 	t_vec		room;
 	t_vec		map;
 	uintmax_t	nbr_ants;
+	char		ant_f;
+	char		room_f;
+	char		start_f;
+	char		end_f;
 }				t_li_master;
 
-int	read_file(t_li_master *master);
-int	get_rooms(t_li_master *master);
-int	read_link(t_li_master *master, char *line);
-int	add_line(t_vec *map, char **line, size_t line_len);
+int				get_rooms(t_li_master *master);
+int				read_rooms(t_li_master *master, char *line, char *position);
+int				read_links(t_li_master *master, char *line);
+int				add_line(t_vec *map, char **line, size_t line_len);
 
 /*
 ** validate_numbers.c
 */
-int	validate_atouintmax(uintmax_t *ret, char *str);
-int	validate_atoi(int *ret, char *str);
+int				validate_atouintmax(uintmax_t *ret, char *str);
+int				validate_atoi(int *ret, char *str);
+
+/*
+** read_file.c
+*/
+int				read_file(t_li_master *master);
+int				delete_grid(int ern, char **grid);
+char			**parse_line(char *line, char delimiter, int size);
+char			read_commands(t_li_master *master, char *line, char position);
 
 /*
 ** cleanup functions
 */
-int		li_cleanup(int ern, t_li_master *master);
+int				li_cleanup(int ern, t_li_master *master);
 #endif

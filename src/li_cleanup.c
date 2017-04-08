@@ -6,18 +6,23 @@
 /*   By: kdavis <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/22 13:27:58 by kdavis            #+#    #+#             */
-/*   Updated: 2017/04/04 11:58:15 by kdavis           ###   ########.fr       */
+/*   Updated: 2017/04/07 18:25:24 by kdavis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <lem_in.h>
+
 
 static const char	*g_error_message[] =
 {
 	"Error 0: Error allocating memory",
 	"Error 1: Improper number of ants",
 	"Error 2: Improper Room format",
-	"Error 3: Improper Link format"
+	"Error 3: Improper Link format",
+	"Error 4: leading 'L' character in input",
+	"Error 5: Applying start and end command to the same room",
+	"Error 6: Could not find rooms to apply links to",
+	"Error 7: Duplicate room name",
 };
 
 static void	remove_rooms(t_li_master *master)
@@ -34,7 +39,7 @@ static void	remove_rooms(t_li_master *master)
 /*	ft_printf("name:%s\nposition:%d\nx:%d\ny:%d\ndist:%d\naddress:%p\n",
 			del->name, del->position, del->coord[0], del->coord[1], del->dist, del);*/
 		ft_strdel(&del->name);
-		ft_memdel(&del->connection.arr);
+		ft_memdel(&del->links.arr);
 		ft_memdel((void*)&del);
 		i++;
 	}

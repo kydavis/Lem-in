@@ -6,7 +6,7 @@
 /*   By: kdavis <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/22 13:25:29 by kdavis            #+#    #+#             */
-/*   Updated: 2017/04/07 14:15:48 by kdavis           ###   ########.fr       */
+/*   Updated: 2017/04/09 16:56:34 by kdavis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,15 +58,17 @@ char	read_commands(t_li_master *master, char *line, char position)
 	{
 		if (position != 0)
 			g_error = 5;
+		else if (master->start)
+			g_error = 8;
 		position = 1;
-		master->start_f += 1;
 	}
 	else if (ft_strequ(line, "##end"))
 	{
 		if (position != 0)
 			g_error = 5;
+		else if (master->end)
+			g_error = 9;
 	 	position = -1;
-		master->end_f += 1;
 	}
 	return (position);
 }
@@ -107,8 +109,3 @@ int			read_file(t_li_master *master)
 		return (ERROR);
 	return (1);
 }
-
-/*	if ((get_rooms(master)) == ERROR)
-		return (ERROR);
-	if ((get_links(master)) == ERROR)
-		return (ERROR);*/

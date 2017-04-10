@@ -6,7 +6,7 @@
 /*   By: kdavis <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/22 13:27:58 by kdavis            #+#    #+#             */
-/*   Updated: 2017/04/07 18:25:24 by kdavis           ###   ########.fr       */
+/*   Updated: 2017/04/09 17:03:48 by kdavis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,12 @@ static const char	*g_error_message[] =
 	"Error 5: Applying start and end command to the same room",
 	"Error 6: Could not find rooms to apply links to",
 	"Error 7: Duplicate room name",
+	"Error 8: Two start commands",
+	"Error 9: Two end commands",
+	"Error 10: No path between start and end",
+	"Error 11: No start",
+	"Error 12: No end",
+	"Error 13: No start or end",
 };
 
 static void	remove_rooms(t_li_master *master)

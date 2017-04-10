@@ -6,7 +6,7 @@
 /*   By: kdavis <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/18 14:26:58 by kdavis            #+#    #+#             */
-/*   Updated: 2017/04/07 18:25:45 by kdavis           ###   ########.fr       */
+/*   Updated: 2017/04/08 17:00:50 by kdavis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,14 +38,20 @@ static int	make_room(t_li_master *master, char **room_info, char position)
 		ft_memdel((void*)&new_room);
 		return (ERROR);
 	}
-	new_room->position = position;
 	new_room->dist = ~0;
-/*	if (!(ft_vecapp(&ROOM, &new_room, sizeof(new_room))))
-		return (ERROR);*/
 	if (!(ft_grow_vec(&ROOM, ROOM.size * (ROOM.len + 1))))
 		return (ERROR);
 	((t_room**)ROOM.arr)[ROOM.len] = new_room;
 	ROOM.len += 1;
+	if (position == 1)
+		master->start = new_room;
+	else if (position == -1)
+		master->end = new_room;
+	return (OK);
+}
+
+/*	if (!(ft_vecapp(&ROOM, &new_room, sizeof(new_room))))
+		return (ERROR);*/
 /*	ft_printf("\nname:%s\nposition:%d\nx:%d\ny:%d\ndist:%d\naddress:%p\n",
 			new_room->name,
 			new_room->position,
@@ -61,9 +67,6 @@ static int	make_room(t_li_master *master, char **room_info, char position)
 			((t_room**)ROOM.arr)[ROOM.len - 1]->coord[1],
 			((t_room**)ROOM.arr)[ROOM.len - 1]->dist,
 			((t_room**)ROOM.arr)[ROOM.len - 1]);*/
-	return (OK);
-}
-
 /*	((t_room **)ROOM.arr)[ROOM.len] = new_room;
 	ROOM.len += 1;*/
 /*

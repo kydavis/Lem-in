@@ -6,7 +6,7 @@
 /*   By: kdavis <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/21 15:27:32 by kdavis            #+#    #+#             */
-/*   Updated: 2017/04/07 18:16:41 by kdavis           ###   ########.fr       */
+/*   Updated: 2017/04/09 19:03:48 by kdavis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,24 +26,48 @@
 
 extern int	g_error;
 
+
 /*
 ** connection: index of the rooms that this room is connected to.
 ** name: Name of the room
 ** dist: distance of room to end.
 ** position: 1:start 0:middle -1:end
-** occupied: 1: occupied 0: vacant.
+** vacant: 0: occupied 1: vacant.
 ** coord[2]: [x, y] coordinates of the room
 */
 
-typedef struct	s_room
+typedef struct		s_room
 {
-	t_vec		links;
-	char		*name;
-	size_t		dist;
-	int			coord[2];
-	char		position;
-	char		occupied;
-}				t_room;
+	t_vec			links;
+	char			*name;
+	size_t			dist;
+	int				coord[2];
+	char			vacant;
+}					t_room;
+
+/*
+** struct s_ant contains information on a particular ant
+** nbr: Ant's id number
+** location: room the ant is currently occupying
+** next: next ant in the line.
+*/
+
+typedef struct		s_ant
+{
+	size_t			nbr;
+	t_room			*location;
+	struct s_ant	*next;
+}					t_ant;
+
+/*
+** struct s_marching is a queue of the ants currently active on the map
+*/
+
+typedef struct		s_marching
+{
+	t_ant			*first;
+	t_ant			*last;
+}					t_marching;
 
 /*
 ** room: array of pointers to t_room structures (t_room**)
@@ -51,38 +75,48 @@ typedef struct	s_room
 ** nbr_ants: The number of ants
 */
 
-typedef struct	s_li_master
+typedef struct		s_li_master
 {
-	t_vec		room;
-	t_vec		map;
-	uintmax_t	nbr_ants;
-	char		ant_f;
-	char		room_f;
-	char		start_f;
-	char		end_f;
-}				t_li_master;
+	t_vec			room;
+	t_vec			map;
+	uintmax_t		nbr_ants;
+	char			ant_f;
+	char			room_f;
+	t_room			*start;
+	t_room			*end;
+}					t_li_master;
 
-int				get_rooms(t_li_master *master);
-int				read_rooms(t_li_master *master, char *line, char *position);
-int				read_links(t_li_master *master, char *line);
-int				add_line(t_vec *map, char **line, size_t line_len);
+int					read_rooms(t_li_master *master, char *line, char *position);
+int					read_links(t_li_master *master, char *line);
+int					add_line(t_vec *map, char **line, size_t line_len);
+
+/*
+** heatmap.c
+*/
+
+int					create_heatmap(t_li_master *master);
+
+/*
+** Map printing: (print_map.c)
+*/
+void				print_map(t_li_master *master);
 
 /*
 ** validate_numbers.c
 */
-int				validate_atouintmax(uintmax_t *ret, char *str);
-int				validate_atoi(int *ret, char *str);
+int					validate_atouintmax(uintmax_t *ret, char *str);
+int					validate_atoi(int *ret, char *str);
 
 /*
 ** read_file.c
 */
-int				read_file(t_li_master *master);
-int				delete_grid(int ern, char **grid);
-char			**parse_line(char *line, char delimiter, int size);
-char			read_commands(t_li_master *master, char *line, char position);
+int					read_file(t_li_master *master);
+int					delete_grid(int ern, char **grid);
+char				**parse_line(char *line, char delimiter, int size);
+char				read_commands(t_li_master *master, char *line, char position);
 
 /*
 ** cleanup functions
 */
-int				li_cleanup(int ern, t_li_master *master);
+int					li_cleanup(int ern, t_li_master *master);
 #endif

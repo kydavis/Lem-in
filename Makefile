@@ -6,7 +6,7 @@
 #    By: kdavis <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/02/21 14:59:51 by kdavis            #+#    #+#              #
-#    Updated: 2017/04/06 14:30:36 by kdavis           ###   ########.fr        #
+#    Updated: 2017/04/08 19:51:56 by kdavis           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,6 +21,8 @@ FILENAMES	=	main.c\
 				get_links.c\
 				add_line.c\
 				validate_numbers.c\
+				print_map.c\
+				heatmap.c\
 #				test_mallocwrap.c\
 
 SRCDIR		=src/

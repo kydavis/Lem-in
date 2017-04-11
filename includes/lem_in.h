@@ -6,7 +6,7 @@
 /*   By: kdavis <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/21 15:27:32 by kdavis            #+#    #+#             */
-/*   Updated: 2017/04/10 20:02:58 by kdavis           ###   ########.fr       */
+/*   Updated: 2017/04/11 14:29:06 by kdavis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@
 
 extern int	g_error;
 extern int	g_flags;
-
 
 /*
 ** connection: index of the rooms that this room is connected to.
@@ -129,7 +128,8 @@ int					validate_atoi(int *ret, char *str);
 int					read_file(t_li_master *master);
 int					delete_grid(int ern, char **grid);
 char				**parse_line(char *line, char delimiter, int size);
-char				read_commands(t_li_master *master, char *line, char position);
+char				read_commands(t_li_master *master, char *line,
+						char position);
 
 /*
 ** cleanup functions

@@ -6,7 +6,7 @@
 /*   By: kdavis <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/09 15:45:21 by kdavis            #+#    #+#             */
-/*   Updated: 2017/04/10 13:43:33 by kdavis           ###   ########.fr       */
+/*   Updated: 2017/04/11 13:41:16 by kdavis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,19 +20,8 @@
 **		send ant to current;
 */
 
-t_ant	*create_ant(t_room *start, int nbr)
-{
-	t_ant	*ret;
 
-	if (!(ret = (t_ant*)malloc(sizeof(ret))))
-		return (NULL);
-	ret->nbr = nbr;
-	ret->location = start;
-	ret->next = NULL;
-	return (ret);
-}
-
-static void		move_ant(t_marching *ordr, t_room *end, t_ant *ant, t_ant *prev)
+static void		move_ant(t_room *start, t_room *end, t_ant *ant)
 {
 	size_t	i;
 	t_room	*prospect;
@@ -41,64 +30,96 @@ static void		move_ant(t_marching *ordr, t_room *end, t_ant *ant, t_ant *prev)
 	while (i < ant->location->links.len)
 	{
 		prospect = ((t_room**)ant->location->links.arr)[i];
-		if (prospect.vacant)
+		if (prospect->vacant && prospect != start)
 			break;
 		i++;
 	}
 	if (i == ant->location->links.len)
 		return ;
-	ant->location.vacant = 1;
+	ant->location->vacant = 1;
 	if (prospect != end)
+		prospect->vacant = 0;
+	ant->location = prospect;
+}
+
+static int		delete_ants(int ern, t_marching *order)
+{
+	t_ant	*ant;
+	t_ant	*temp;
+
+	ant = order->first;
+	while (ant)
 	{
-		prospect->location.vacant = 0;
-		ant->location = prospect;
-		return ;
+		temp = ant;
+		ant = ant->next;
+		ft_memdel((void*)&temp);
 	}
-	else if (order->first == ant)
-		order->first = ant->next;
-	else if (prev)
+	return (ern);
+}
+
+static t_ant	*remove_ant(t_ant *prev, t_ant *ant, t_marching *order)
+{
+	if (prev)
 		prev->next = ant->next;
+	else if (ant == order->first)
+		order->first = ant->next;
 	ft_memdel((void*)&ant);
+	if (prev)
+		return (prev->next);
+	return (order->first);
 }
 
-static void	push_ant(t_marching *order, t_ant *ant)
+static void		print_ants(t_room *start, t_room *end, t_marching *order)
 {
-	if (!(order->first))
-		order->first = ant;
-	else if (order->last)
-		order->last->next = ant;
-	order->last = ant;
-}
+	t_ant *ant;
+	t_ant *prev;
 
-uintmax_t	add_ants(t_marching *order, t_room *start,
-		uintmax_t max, uintmax_t current)
-{
-	if (!())
-	return (1);
+	ant = order->first;
+	prev = NULL;
+	while (ant)
+	{
+		if ((g_flags & 0x4) && ant->location != start)
+			ft_printf("\e[9%dmL%ju-%s\e[0m", ant->color, ant->nbr,
+					ant->location->name);
+		else if (ant->location != start)
+			ft_printf("L%ju-%s", ant->nbr, ant->location->name);
+		if (ant->next && ant->location != start)
+			ft_putchar(' ');
+		if (ant->location == end)
+		{
+			ant = remove_ant(prev, ant, order);
+		}
+		else
+		{
+			prev = ant;
+			ant = ant->next;
+		}
+	}
+	ft_putchar('\n');
 }
 
 int	send_ants(t_li_master *master)
 {
 	t_marching	order;
 	t_ant		*ant;
-	t_ant		*prev;
 	uintmax_t	i;
 	uintmax_t	add;
 
 	ft_bzero(&order, sizeof(order));
 	i = 0;
-	while (i < master->nbr_ant || order.first)
+	while (order.first || i == 0)
 	{
+		if ((add = add_ants(&order, master->start, ANT_MAX, i)) == ~0ULL)
+			return (delete_ants(ERROR, &order));
 		ant = order.first;
-		prev = NULL;
 		while (ant)
 		{
-			move_ant(&order, master->end, ant, prev);
-			prev = ant;
+			move_ant(master->start, master->end, ant);
 			ant = ant->next;
 		}
-		if ((add = add_ants(&order, master->start, master->nbr_ant, i)) == ~0)
-			return (delete_ants(ERROR, order));
+/*		ft_printf("i:%zu\n", i);*/
+		print_ants(master->start, master->end, &order);
 		i += add;
 	}
+	return (delete_ants(OK, &order));
 }

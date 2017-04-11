@@ -6,7 +6,7 @@
 /*   By: kdavis <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/21 15:27:32 by kdavis            #+#    #+#             */
-/*   Updated: 2017/04/09 19:03:48 by kdavis           ###   ########.fr       */
+/*   Updated: 2017/04/10 20:02:58 by kdavis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,10 @@
 # define MAP	master->map
 # define ROOM	master->room
 # define LINK	master->room.links
+# define ANT_MAX master->nbr_ants
 
 extern int	g_error;
+extern int	g_flags;
 
 
 /*
@@ -54,8 +56,9 @@ typedef struct		s_room
 
 typedef struct		s_ant
 {
-	size_t			nbr;
+	uintmax_t		nbr;
 	t_room			*location;
+	int				color;
 	struct s_ant	*next;
 }					t_ant;
 
@@ -95,6 +98,19 @@ int					add_line(t_vec *map, char **line, size_t line_len);
 */
 
 int					create_heatmap(t_li_master *master);
+
+/*
+** add_ants.c
+*/
+
+uintmax_t			add_ants(t_marching *order, t_room *start, uintmax_t max,
+						uintmax_t current);
+
+/*
+** send_ants.c
+*/
+
+int					send_ants(t_li_master *master);
 
 /*
 ** Map printing: (print_map.c)

@@ -6,7 +6,7 @@
 #    By: kdavis <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/02/21 14:59:51 by kdavis            #+#    #+#              #
-#    Updated: 2017/04/10 19:02:14 by kdavis           ###   ########.fr        #
+#    Updated: 2017/04/11 14:26:30 by kdavis           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,7 +25,6 @@ FILENAMES	=	main.c\
 				heatmap.c\
 				send_ants.c\
 				add_ants.c\
-#				test_mallocwrap.c\
 
 SRCDIR		=src/
 IDIR		=includes/
@@ -33,7 +32,7 @@ LIB			=libft
 
 SRC			=$(addprefix $(SRCDIR), $(FILENAMES))
 
-CFLAGS		=-Wall -Werror -Wextra -fsanitize=address
+CFLAGS		=-Wall -Werror -Wextra
 IFLAGS		=-I $(IDIR) -I $(LIB)/$(IDIR)
 LFLAGS		=-L $(LIB) -lft
 

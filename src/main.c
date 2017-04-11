@@ -6,7 +6,7 @@
 /*   By: kdavis <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/21 15:28:05 by kdavis            #+#    #+#             */
-/*   Updated: 2017/04/10 20:25:10 by kdavis           ###   ########.fr       */
+/*   Updated: 2017/04/11 14:27:52 by kdavis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,4 @@ int	main(int argc, char **argv)
 	send_ants(&master);
 	li_cleanup(0, &master);
 	return (0);
-	(void)argc;
-	(void)argv;
 }

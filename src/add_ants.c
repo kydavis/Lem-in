@@ -6,7 +6,7 @@
 /*   By: kdavis <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/10 13:44:04 by kdavis            #+#    #+#             */
-/*   Updated: 2017/04/11 13:13:45 by kdavis           ###   ########.fr       */
+/*   Updated: 2017/04/11 14:42:30 by kdavis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static void	push_ant(t_marching *order, t_ant *ant)
 	order->last = ant;
 }
 
-t_ant	*create_ant(t_room *start, uintmax_t nbr)
+t_ant		*create_ant(t_room *start, uintmax_t nbr)
 {
 	t_ant	*ret;
 
@@ -64,23 +64,3 @@ uintmax_t	add_ants(t_marching *order, t_room *start,
 	}
 	return (i - 1);
 }
-
-/*	ft_printf("max:%ju ant id:%ju location:%s dist:%d next:%s\n",
-			max, ant->nbr, ant->location->name, ant->location->dist,
-			ant->next ? "yes" : "no");*/
-/*static int		print_ant(t_ant *ant)
-{
-	char	*nbr_str;
-
-	ft_putchar('L');
-	printf("\n\nbefore ft_ulltoa_base next:%p\n", ant->next);///
-	if (!(nbr_str = ft_ulltoa_base(ant->nbr, 10, 0)))
-		return (ERROR);
-	printf("after ft_ulltoa_base next:%p\n\n", ant->next);///
-	ft_putstr(nbr_str);
-	ft_putchar('-');
-	ft_putstr(ant->location->name);
-	if (ant->next)
-		ft_putchar(' ');
-	ft_strdel(&nbr_str);
-	return (OK);*/

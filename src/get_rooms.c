@@ -6,7 +6,7 @@
 /*   By: kdavis <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/18 14:26:58 by kdavis            #+#    #+#             */
-/*   Updated: 2017/04/08 17:00:50 by kdavis           ###   ########.fr       */
+/*   Updated: 2017/04/11 14:31:16 by kdavis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,30 +50,11 @@ static int	make_room(t_li_master *master, char **room_info, char position)
 	return (OK);
 }
 
-/*	if (!(ft_vecapp(&ROOM, &new_room, sizeof(new_room))))
-		return (ERROR);*/
-/*	ft_printf("\nname:%s\nposition:%d\nx:%d\ny:%d\ndist:%d\naddress:%p\n",
-			new_room->name,
-			new_room->position,
-			new_room->coord[0],
-			new_room->coord[1],
-			new_room->dist,
-			new_room);*/
-/*	ft_printf("\nAfter appending")
-	ft_printf("\nname:%s\nposition:%d\nx:%d\ny:%d\ndist:%d\naddress:%p\n",
-			((t_room**)ROOM.arr)[ROOM.len - 1]->name,
-			((t_room**)ROOM.arr)[ROOM.len - 1]->position,
-			((t_room**)ROOM.arr)[ROOM.len - 1]->coord[0],
-			((t_room**)ROOM.arr)[ROOM.len - 1]->coord[1],
-			((t_room**)ROOM.arr)[ROOM.len - 1]->dist,
-			((t_room**)ROOM.arr)[ROOM.len - 1]);*/
-/*	((t_room **)ROOM.arr)[ROOM.len] = new_room;
-	ROOM.len += 1;*/
 /*
 ** Read_rooms is responsible for formatting the rooms properly
 */
 
-int	read_rooms(t_li_master *master, char *line, char *position)
+int			read_rooms(t_li_master *master, char *line, char *position)
 {
 	char	**room_info;
 	size_t	i;
@@ -92,35 +73,3 @@ int	read_rooms(t_li_master *master, char *line, char *position)
 	*position = 0;
 	return (delete_grid(ret, room_info));
 }
-
-/*
-** get_rooms is the hub function for parsing the room data retrieved from the
-** standard input.
-*/
-
-/*int	get_rooms(t_li_master *master)
-{
-	char	*line;
-	int		len;
-	int		ern;
-	char	position;
-
-	position = 0;
-	while ((len = get_next_line(0, &line)) >= 0 &&
-			(line[0] == '#' || !(ft_strchr(line, '-'))))
-	{
-		position = read_commands(master, line, position);
-		if (line[0] == 'L' || read_rooms(master, line, &position) == ERROR)
-			g_error = 2;
-		ern = add_line(&master->map, &line, len);
-		if (g_error != 0 || ern == ERROR)
-			break ;
-	}
-	if (len < 0)
-		return (ERROR);
-	ern = read_links(master, line);
-	if (ern == ERROR)
-		g_error = 3;
-	ern = add_line(&master->map, &line, len);
-	return (ern);
-}*/

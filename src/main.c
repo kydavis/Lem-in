@@ -6,7 +6,7 @@
 /*   By: kdavis <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/21 15:28:05 by kdavis            #+#    #+#             */
-/*   Updated: 2017/04/11 14:27:52 by kdavis           ###   ########.fr       */
+/*   Updated: 2017/04/11 14:41:08 by kdavis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ static void	set_flags(int argc, char **argv)
 	}
 }
 
-int	main(int argc, char **argv)
+int			main(int argc, char **argv)
 {
 	t_li_master	master;
 

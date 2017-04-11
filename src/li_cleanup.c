@@ -6,12 +6,11 @@
 /*   By: kdavis <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/22 13:27:58 by kdavis            #+#    #+#             */
-/*   Updated: 2017/04/09 17:03:48 by kdavis           ###   ########.fr       */
+/*   Updated: 2017/04/11 14:37:37 by kdavis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <lem_in.h>
-
 
 static const char	*g_error_message[] =
 {
@@ -37,13 +36,9 @@ static void	remove_rooms(t_li_master *master)
 	size_t	i;
 
 	i = 0;
-/*	ft_printf("room len:%zu total:%zu size:%u array address:%p\n",
-			ROOM.len, ROOM.total, ROOM.size, ROOM.arr);*/
 	while (i < ROOM.len)
 	{
 		del = *((t_room **)ROOM.arr + i);
-/*	ft_printf("name:%s\nposition:%d\nx:%d\ny:%d\ndist:%d\naddress:%p\n",
-			del->name, del->position, del->coord[0], del->coord[1], del->dist, del);*/
 		ft_strdel(&del->name);
 		ft_memdel(&del->links.arr);
 		ft_memdel((void*)&del);
@@ -51,6 +46,13 @@ static void	remove_rooms(t_li_master *master)
 	}
 	ft_memdel(&ROOM.arr);
 }
+
+/*
+** Cleanup memory allocations at the end of the program
+** while loop at the end is meant to purge any leftover
+** memory get_next_line may be holding in its static
+** variables.
+*/
 
 int			li_cleanup(int ern, t_li_master *master)
 {
@@ -60,7 +62,6 @@ int			li_cleanup(int ern, t_li_master *master)
 	ft_memdel(&MAP.arr);
 	if (ern < 0 || g_error != 0)
 		ft_putendl_fd(g_error_message[g_error], 2);
-//This portion is used for cleaning up any remaining memory
 	while (get_next_line(0, &line) > 0)
 		ft_strdel(&line);
 	ft_strdel(&line);

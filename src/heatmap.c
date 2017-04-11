@@ -6,7 +6,7 @@
 /*   By: kdavis <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/08 17:06:30 by kdavis            #+#    #+#             */
-/*   Updated: 2017/04/10 13:34:32 by kdavis           ###   ########.fr       */
+/*   Updated: 2017/04/11 14:42:49 by kdavis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ void	add_to_heatmap(t_vec *queue, t_room *current)
 	}
 }
 
-int	create_heatmap(t_li_master *master)
+int		create_heatmap(t_li_master *master)
 {
 	t_vec	queue;
 	t_room	*current;

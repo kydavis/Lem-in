@@ -6,7 +6,7 @@
 /*   By: kdavis <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/07 18:29:10 by kdavis            #+#    #+#             */
-/*   Updated: 2017/04/09 18:15:06 by kdavis           ###   ########.fr       */
+/*   Updated: 2017/04/11 14:43:11 by kdavis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ static void	print_format(t_li_master *master, t_room *room, char parent)
 	}
 }
 
-void	print_map(t_li_master *master)
+void		print_map(t_li_master *master)
 {
 	t_room	*current;
 	t_room	*child;

@@ -5,14 +5,19 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: kdavis <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/02/22 13:25:29 by kdavis            #+#    #+#             */
-/*   Updated: 2017/04/09 16:56:34 by kdavis           ###   ########.fr       */
+/*   Created: 2017/04/11 14:40:46 by kdavis            #+#    #+#             */
+/*   Updated: 2017/04/11 14:40:48 by kdavis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <lem_in.h>
 
-int	delete_grid(int ern, char **grid)
+/*
+** Cleans up the array of pointers created in parse line for read_rooms and
+** read_links.
+*/
+
+int			delete_grid(int ern, char **grid)
 {
 	size_t	i;
 
@@ -28,6 +33,10 @@ int	delete_grid(int ern, char **grid)
 	}
 	return (ern);
 }
+
+/*
+** Parses the argument lines for read_rooms and read_links
+*/
 
 char		**parse_line(char *line, char delimiter, int size)
 {
@@ -52,7 +61,7 @@ char		**parse_line(char *line, char delimiter, int size)
 ** is a command
 */
 
-char	read_commands(t_li_master *master, char *line, char position)
+char		read_commands(t_li_master *master, char *line, char position)
 {
 	if (ft_strequ(line, "##start"))
 	{
@@ -68,7 +77,7 @@ char	read_commands(t_li_master *master, char *line, char position)
 			g_error = 5;
 		else if (master->end)
 			g_error = 9;
-	 	position = -1;
+		position = -1;
 	}
 	return (position);
 }
@@ -80,6 +89,10 @@ static int	get_ants(t_li_master *master, char *line)
 		g_error = 1;
 	return (OK);
 }
+
+/*
+** Parses the standard input to create the map of rooms.
+*/
 
 int			read_file(t_li_master *master)
 {

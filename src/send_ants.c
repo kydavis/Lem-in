@@ -6,32 +6,23 @@
 /*   By: kdavis <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/09 15:45:21 by kdavis            #+#    #+#             */
-/*   Updated: 2017/04/11 13:41:16 by kdavis           ###   ########.fr       */
+/*   Updated: 2017/04/11 14:40:06 by kdavis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <lem_in.h>
 
-/*
-** For dispersal maximum number of ants to create is the number of links to end
-** Also use the number of ants left and the distance of the link to decide if 
-** you are going to use that pathway.
-** if (current->dist - prev->dist < nbr_ants)
-**		send ant to current;
-*/
-
-
 static void		move_ant(t_room *start, t_room *end, t_ant *ant)
 {
 	size_t	i;
 	t_room	*prospect;
-	
+
 	i = 0;
 	while (i < ant->location->links.len)
 	{
 		prospect = ((t_room**)ant->location->links.arr)[i];
 		if (prospect->vacant && prospect != start)
-			break;
+			break ;
 		i++;
 	}
 	if (i == ant->location->links.len)
@@ -98,7 +89,7 @@ static void		print_ants(t_room *start, t_room *end, t_marching *order)
 	ft_putchar('\n');
 }
 
-int	send_ants(t_li_master *master)
+int				send_ants(t_li_master *master)
 {
 	t_marching	order;
 	t_ant		*ant;
@@ -117,7 +108,6 @@ int	send_ants(t_li_master *master)
 			move_ant(master->start, master->end, ant);
 			ant = ant->next;
 		}
-/*		ft_printf("i:%zu\n", i);*/
 		print_ants(master->start, master->end, &order);
 		i += add;
 	}

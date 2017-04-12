@@ -6,7 +6,7 @@
 /*   By: kdavis <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/11 14:40:46 by kdavis            #+#    #+#             */
-/*   Updated: 2017/04/11 14:40:48 by kdavis           ###   ########.fr       */
+/*   Updated: 2017/04/11 19:05:41 by kdavis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,7 +102,7 @@ int			read_file(t_li_master *master)
 	char	position;
 
 	position = 0;
-	while ((len = get_next_line(0, &line)) > 0)
+	while ((len = get_next_line(0, &line)) > 0 && line[0])
 	{
 		if (line[0] == 'L')
 			g_error = 4;
@@ -118,7 +118,7 @@ int			read_file(t_li_master *master)
 			ern == ERROR)
 			return (ERROR);
 	}
-	if (len < 0)
+	if (len != 0)
 		return (ERROR);
 	return (1);
 }

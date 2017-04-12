@@ -6,7 +6,7 @@
 /*   By: kdavis <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/22 13:27:58 by kdavis            #+#    #+#             */
-/*   Updated: 2017/04/11 14:37:37 by kdavis           ###   ########.fr       */
+/*   Updated: 2017/04/11 19:08:12 by kdavis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static const char	*g_error_message[] =
 {
-	"Error 0: Error allocating memory",
+	"Error",
 	"Error 1: Improper number of ants",
 	"Error 2: Improper Room format",
 	"Error 3: Improper Link format",

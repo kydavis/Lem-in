@@ -6,7 +6,7 @@
 /*   By: kdavis <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/21 15:28:05 by kdavis            #+#    #+#             */
-/*   Updated: 2017/04/11 14:41:08 by kdavis           ###   ########.fr       */
+/*   Updated: 2017/04/12 11:29:03 by kdavis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,11 +28,11 @@ static int	check_start_end(t_li_master *master)
 	return (ERROR);
 }
 
-static void	set_flags(int argc, char **argv)
+static int	set_flags(int argc, char **argv)
 {
 	int	i;
 
-	i = 0;
+	i = 1;
 	while (i < argc)
 	{
 		if (ft_strcmp(argv[i], "-s") == 0)
@@ -41,15 +41,25 @@ static void	set_flags(int argc, char **argv)
 			g_flags |= 0x2;
 		else if (ft_strcmp(argv[i], "-c") == 0)
 			g_flags |= 0x4;
+		else
+		{
+			ft_printf("Usage: ./lem-in [-c -s -v] < test file\n");
+			ft_printf("-c: color option (color coordinate the ants)\n");
+			ft_printf("-v: verbose option (display heatmap connections)\n");
+			ft_printf("-s: silent option (silence map info display)\n");
+			return (0);
+		}
 		i++;
 	}
+	return (1);
 }
 
 int			main(int argc, char **argv)
 {
 	t_li_master	master;
 
-	set_flags(argc, argv);
+	if (!(set_flags(argc, argv)))
+		return (-1);
 	ft_bzero(&master, sizeof(master));
 	ft_initialize_vec(&master.map, sizeof(char), BUFF_SIZE, 0);
 	if (read_file(&master) == ERROR)

@@ -6,7 +6,7 @@
 /*   By: kdavis <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/02/21 15:27:32 by kdavis            #+#    #+#             */
-/*   Updated: 2017/04/11 14:29:06 by kdavis           ###   ########.fr       */
+/*   Updated: 2017/04/12 11:37:02 by kdavis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@ typedef struct		s_ant
 	uintmax_t		nbr;
 	t_room			*location;
 	int				color;
+	char			moved;
 	struct s_ant	*next;
 }					t_ant;
 

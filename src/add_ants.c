@@ -6,7 +6,7 @@
 /*   By: kdavis <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/10 13:44:04 by kdavis            #+#    #+#             */
-/*   Updated: 2017/04/11 14:42:30 by kdavis           ###   ########.fr       */
+/*   Updated: 2017/04/12 11:38:01 by kdavis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ t_ant		*create_ant(t_room *start, uintmax_t nbr)
 	ret->nbr = nbr;
 	ret->location = start;
 	ret->next = NULL;
+	ret->moved = 0;
 	ret->color = nbr % 7 + 1;
 	return (ret);
 }

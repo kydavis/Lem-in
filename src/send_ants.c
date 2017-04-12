@@ -6,7 +6,7 @@
 /*   By: kdavis <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/09 15:45:21 by kdavis            #+#    #+#             */
-/*   Updated: 2017/04/11 14:40:06 by kdavis           ###   ########.fr       */
+/*   Updated: 2017/04/12 11:38:58 by kdavis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ static void		move_ant(t_room *start, t_room *end, t_ant *ant)
 	t_room	*prospect;
 
 	i = 0;
+	ant->moved = 0;
 	while (i < ant->location->links.len)
 	{
 		prospect = ((t_room**)ant->location->links.arr)[i];
@@ -31,6 +32,7 @@ static void		move_ant(t_room *start, t_room *end, t_ant *ant)
 	if (prospect != end)
 		prospect->vacant = 0;
 	ant->location = prospect;
+	ant->moved = 1;
 }
 
 static int		delete_ants(int ern, t_marching *order)
@@ -60,7 +62,7 @@ static t_ant	*remove_ant(t_ant *prev, t_ant *ant, t_marching *order)
 	return (order->first);
 }
 
-static void		print_ants(t_room *start, t_room *end, t_marching *order)
+static void		print_ants(t_room *end, t_marching *order)
 {
 	t_ant *ant;
 	t_ant *prev;
@@ -69,12 +71,12 @@ static void		print_ants(t_room *start, t_room *end, t_marching *order)
 	prev = NULL;
 	while (ant)
 	{
-		if ((g_flags & 0x4) && ant->location != start)
+		if ((g_flags & 0x4) && ant->moved)
 			ft_printf("\e[9%dmL%ju-%s\e[0m", ant->color, ant->nbr,
 					ant->location->name);
-		else if (ant->location != start)
+		else if (ant->moved)
 			ft_printf("L%ju-%s", ant->nbr, ant->location->name);
-		if (ant->next && ant->location != start)
+		if (ant->next && ant->moved)
 			ft_putchar(' ');
 		if (ant->location == end)
 		{
@@ -108,7 +110,7 @@ int				send_ants(t_li_master *master)
 			move_ant(master->start, master->end, ant);
 			ant = ant->next;
 		}
-		print_ants(master->start, master->end, &order);
+		print_ants(master->end, &order);
 		i += add;
 	}
 	return (delete_ants(OK, &order));

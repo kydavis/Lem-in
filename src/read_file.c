@@ -6,7 +6,7 @@
 /*   By: kdavis <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/04/11 14:40:46 by kdavis            #+#    #+#             */
-/*   Updated: 2017/04/11 19:05:41 by kdavis           ###   ########.fr       */
+/*   Updated: 2017/05/04 21:36:27 by kdavis           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,7 +118,6 @@ int			read_file(t_li_master *master)
 			ern == ERROR)
 			return (ERROR);
 	}
-	if (len != 0)
-		return (ERROR);
-	return (1);
+	ft_strdel(&line);
+	return (len != 0 ? ERROR : 1);
 }

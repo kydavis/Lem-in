@@ -1,3 +1,6 @@
+#r0-r1-r10
+#|    /
+#r9-r2
 # number of ants
 10
 # start of room listings

@@ -1,0 +1,16 @@
+# number of ants
+10
+# start of room listings
+r1 23 43
+r9 54 23
+##start
+r0 41 98
+r2 43 12
+##end
+r10 0 12
+# start of link section
+r0-r9
+r9-r2
+r1-r0
+r1-r10
+r2-r10

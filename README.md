@@ -55,13 +55,13 @@ A link contains two rooms delimited by a '-'.
 # number of ants
 10
 # start of room listings
-r1 23 43
-r9 54 23
+r1 1 0
+r9 0 1
 ##start
-r0 41 98
-r2 43 12
+r0 0 0
+r2 1 1
 ##end
-r10 0 12
+r10 2 1
 # start of link section
 r0-r9
 r9-r2
@@ -69,6 +69,14 @@ r1-r0
 r1-r10
 r2-r10
 ```
+
+Graphical representation of the map:
+```
+r0-r1-r10
+|    /
+r9-r2
+```
+
 
 ## Output:
 Each line for the output displays all the ants that moved that turn.
